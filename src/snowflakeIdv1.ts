@@ -326,7 +326,7 @@ export class snowflakeIdv1 {
 
     /**
      * 生成ID
-     * @returns 
+     * @returns 根据输出数值判断，小于number最大值时输出number类型，大于时输出bigint
      */
     public NextId(): number | bigint {
         if (this._IsOverCost) {
@@ -348,7 +348,7 @@ export class snowflakeIdv1 {
 
     /**
      * 生成ID
-     * @returns 
+     * @returns 始终输出bigint类型
      */
     public NextBigId(): bigint {
         if (this._IsOverCost) {
