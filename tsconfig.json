@@ -71,6 +71,8 @@
 
     /* Advanced Options */
     "skipLibCheck": true,
+    // 生成d.ts文件
+    "declaration": true,
     /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },

@@ -81,10 +81,9 @@ export class snowflakeIdv1 {
 
     /**
      *Creates an instance of Genid.
-     * @author bubao
+     * @author zhupengfeivip
      * @param {{
-     *     Method: 1, // 雪花计算方法，（1-漂移算法|2-传统算法），默认 1
-     *     BaseTime: 1577836800000,  // 基础时间（ms 单位），不能超过当前系统时间
+     *     BaseTime: 1577836800000,  // 基础时间（ms 单位），默认2020年1月1日，不能超过当前系统时间，一旦投入使用就不能再更改，更改后产生的ID可能会和以前的重复
      *     WorkerId: Number, // 机器码，必须由外部设定，最大值 2^WorkerIdBitLength-1
      *     WorkerIdBitLength: 6,   // 机器码位长，默认值 6，取值范围 [1, 15](要求：序列数位长+机器码位长不超过 22)
      *     SeqBitLength: 6,   // 序列数位长，默认值 6，取值范围 [3, 21](要求：序列数位长+机器码位长不超过 22)
@@ -322,6 +321,28 @@ export class snowflakeIdv1 {
             tempTimeTicker = this.GetCurrentTimeTick()
         }
         return tempTimeTicker
+    }
+
+    /**
+     * 生成ID
+     * @returns 始终输出number类型，超过时throw error
+     */
+    public NextNumber(): number {
+        if (this._IsOverCost) {
+            //
+            let id = this.NextOverCostId()
+            if (id >= 9007199254740992n)
+                throw Error(`${id.toString()} over max of Number 9007199254740992`)
+
+            return parseInt(id.toString())
+        } else {
+            //
+            let id = this.NextNormalId()
+            if (id >= 9007199254740992n)
+                throw Error(`${id.toString()} over max of Number 9007199254740992`)
+
+            return parseInt(id.toString())
+        }
     }
 
     /**
