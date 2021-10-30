@@ -8,6 +8,16 @@ more demo:[https://github.com/zhupengfeivip/simple-flakeId-demo.git](https://git
 ```sh
 npm i simple-flakeid
 ```
+## api
+
+### NextId()
+If the value is smaller than the maximum value of number, the number type is displayed. If the value is larger than number, bigint is displayed
+
+### NextNumber()
+Always print number, throw error if it exceeds
+
+### NextBigId()
+Always print bigInt
 
 ## js demo
 

@@ -1,8 +1,6 @@
-import { snowflakeIdv1 } from '../src/snowflakeIdv1'
+import { SnowflakeIdv1 } from '../src/snowflakeIdv1'
 
-const WorkerId = process.env.WorkerId == undefined ? 1 : process.env.WorkerId
-
-let gen1 = new snowflakeIdv1({ WorkerId: WorkerId, SeqBitLength: 10 })
+let gen1 = new SnowflakeIdv1({ workerId: 1, seqBitLength: 10 })
 console.time("Test Run")
 const HSet = new Set()
 for (let index = 0; index < 500000; index++) {

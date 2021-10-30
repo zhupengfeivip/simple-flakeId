@@ -15,7 +15,18 @@ js Number 类型最大数值：9007199254740992(16位)，
 在JS中没有bigint类型，所以建议将ID控制在16位以内，统一使用number类型
 
 
-执行测试代码
+## api
+
+### NextId()
+根据输出数值判断，小于number最大值时输出number类型，大于时输出bigint
+
+### NextNumber()
+始终输出number类型，超过时throw error
+
+### NextBigId()
+始终输出bigint类型
+
+## 执行测试代码
 
 ```bash
 ts-node test/test1.ts

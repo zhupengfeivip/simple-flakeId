@@ -1,7 +1,9 @@
+import { snowflakeIdv1Option } from "./snowflakeIdv1Option"
+
 /**
  * 
  */
-export class snowflakeIdv1 {
+export class SnowflakeIdv1 {
 
     /**
      * 雪花计算方法，（1-漂移算法|2-传统算法），默认 1
@@ -93,54 +95,53 @@ export class snowflakeIdv1 {
      * }} options
      * @memberof Genid
      */
-    constructor(options: any) {
-        if (options.WorkerId === undefined)
+    constructor(options: snowflakeIdv1Option) {
+        if (options.workerId === undefined)
             throw new Error("lost WorkerId")
 
         // 1.BaseTime 2020年1月1日
         const BaseTime = 1577836800000
-        if (!options.BaseTime || options.BaseTime < 0)
-            options.BaseTime = BaseTime
+        if (!options.baseTime || options.baseTime < 0)
+            options.baseTime = BaseTime
 
         // 2.WorkerIdBitLength
         const WorkerIdBitLength = 6
-        if (!options.WorkerIdBitLength || options.WorkerIdBitLength < 0)
-            options.WorkerIdBitLength = WorkerIdBitLength
+        if (!options.workerIdBitLength || options.workerIdBitLength < 0)
+            options.workerIdBitLength = WorkerIdBitLength
 
         // 4.SeqBitLength
         const SeqBitLength = 6
-        if (!options.SeqBitLength || options.SeqBitLength < 0)
-            options.SeqBitLength = SeqBitLength
+        if (!options.seqBitLength || options.seqBitLength < 0)
+            options.seqBitLength = SeqBitLength
 
         // 5.MaxSeqNumber
-        const MaxSeqNumber = (1 << SeqBitLength) - 1
-        if (options.MaxSeqNumber <= 0 || options.MaxSeqNumber === undefined) {
-            options.MaxSeqNumber = MaxSeqNumber
-        }
+        if (options.maxSeqNumber == undefined || options.maxSeqNumber <= 0)
+            options.maxSeqNumber = (1 << SeqBitLength) - 1
+
         // 6.MinSeqNumber
         const MinSeqNumber = 5
-        if (!options.MinSeqNumber || options.MinSeqNumber < 0)
-            options.MinSeqNumber = MinSeqNumber
+        if (options.minSeqNumber == undefined || options.minSeqNumber < 0)
+            options.minSeqNumber = MinSeqNumber
 
         // 7.Others
         const topOverCostCount = 2000
-        if (!options.TopOverCostCount || options.TopOverCostCount < 0)
-            options.TopOverCostCount = topOverCostCount
+        if (options.topOverCostCount == undefined || options.topOverCostCount < 0)
+            options.topOverCostCount = topOverCostCount
 
 
-        if (options.Method !== 2)
-            options.Method = 1
+        if (options.method !== 2)
+            options.method = 1
         else
-            options.Method = 2
+            options.method = 2
 
-        this.Method = BigInt(options.Method)
-        this.BaseTime = BigInt(options.BaseTime)
-        this.WorkerId = BigInt(options.WorkerId)
-        this.WorkerIdBitLength = BigInt(options.WorkerIdBitLength)
-        this.SeqBitLength = BigInt(options.SeqBitLength)
-        this.MaxSeqNumber = BigInt(options.MaxSeqNumber)
-        this.MinSeqNumber = BigInt(options.MinSeqNumber)
-        this.TopOverCostCount = BigInt(options.TopOverCostCount)
+        this.Method = BigInt(options.method)
+        this.BaseTime = BigInt(options.baseTime)
+        this.WorkerId = BigInt(options.workerId)
+        this.WorkerIdBitLength = BigInt(options.workerIdBitLength)
+        this.SeqBitLength = BigInt(options.seqBitLength)
+        this.MaxSeqNumber = BigInt(options.maxSeqNumber)
+        this.MinSeqNumber = BigInt(options.minSeqNumber)
+        this.TopOverCostCount = BigInt(options.topOverCostCount)
 
         const timestampShift = this.WorkerIdBitLength + this.SeqBitLength
         const currentSeqNumber = this.MinSeqNumber
