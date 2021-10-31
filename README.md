@@ -1,6 +1,8 @@
 # simple-flakeid
 
-[![NPM version](https://img.shields.io/npm/v/simple-flakeid.svg)](https://www.npmjs.com/package/simple-flakeid) [![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/chinese.svg)](README.cn.md)
+[![NPM version](https://img.shields.io/npm/v/simple-flakeid.svg)](https://www.npmjs.com/package/simple-flakeid) 
+[![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/chinese.svg)](README.cn.md)
+[![Gitter](https://badges.gitter.im/alliterhome/simple-flakeid.svg)](https://gitter.im/alliterhome/simple-flakeid?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 more demo:[https://github.com/zhupengfeivip/simple-flakeId-demo.git](https://github.com/zhupengfeivip/simple-flakeId-demo.git)
 
