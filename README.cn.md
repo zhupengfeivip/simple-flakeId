@@ -14,36 +14,40 @@ js Number 类型最大数值：9007199254740992(16位)，
 
 在JS中没有bigint类型，所以建议将ID控制在16位以内，统一使用number类型
 
+时间基准为2020年1月1日，seqBitLength=11以下输出为number类型，超过11输出为bigint类型
 
-## api
-
-### NextId()
-根据输出数值判断，小于number最大值时输出number类型，大于时输出bigint
-
-### NextNumber()
-始终输出number类型，超过时throw error
-
-### NextBigId()
-始终输出bigint类型
-
-## 执行测试代码
-
-```bash
-ts-node test/test1.ts
-```
-
-
+## install
 
 ```sh
 npm i simple-flakeid
 ```
 
+
+
+## function
+
+### function NextId()
+根据输出数值判断，小于number最大值时输出number类型，大于时输出bigint
+
+### function NextNumber()
+始终输出number类型，超过时throw error
+
+### function NextBigId()
+始终输出bigint类型
+
+
+
+## test
+
+```bash
+ts-node test/test1.ts
+```
+
 ## js demo
 
 ```js
-var genid = require('simple-flakeid').genid
-
-let gen1 = new genid({ WorkerId: 1 })
+const snowId = require('simple-flakeid')
+let gen1 = new snowId.SnowflakeIdv1({ workerId: 1 })
 for (let i = 0; i < 10; i++) {
     let id1 = gen1.NextId()
     console.log(`${i} ID:${id1} ${typeof id1} length：${id1.toString().length}`)
@@ -65,9 +69,8 @@ $ node js/demo1.js
 ```
 
 ```js
-var genid = require('simple-flakeid').genid
-
-let gen1 = new genid({ WorkerId: 1 })
+const snowId = require('simple-flakeid')
+let gen1 = new snowId.SnowflakeIdv1({ workerId: 1 })
 for (let i = 0; i < 10; i++) {
     let id1 = gen1.NextBigId()
     console.log(`${i} ID:${id1} ${typeof id1} length：${id1.toString().length}`)
@@ -92,9 +95,9 @@ $ node js/demo2.js
 ## ts demo
 
 ```js
-import { genid } from "simple-flakeid"
+import { SnowflakeIdv1 } from "../index"
 
-let gen1 = new genid({ WorkerId: 1 })
+let gen1 = new SnowflakeIdv1({ workerId: 1 })
 for (let i = 0; i < 10; i++) {
     let id1 = gen1.NextId()
     console.log(`${i} ID:${id1} ${typeof id1} length：${id1.toString().length}`)
@@ -115,9 +118,17 @@ $ ts-node ts/demo1.ts
 9 ID:235099434233925 number length：15
 ```
 
+更多示例代码：[https://github.com/zhupengfeivip/simple-flakeId-demo.git](https://github.com/zhupengfeivip/simple-flakeId-demo.git)
+包含在API中如何处理bigint的长度问题，请看示例代码
+
 
 ## 其他帮助
 
 在mysql中int类型最大长度是10位数字，由于本算法默认生成的是15位，最短也是11位，所以在mysql中需要使用bigint数据类型
 
-
+```bash
+new Date('Wed, 01 Jan 2020 00:00:00 GMT').getTime()
+1577836800000
+new Date('Wed, 01 Jan 2021 00:00:00 GMT').getTime()
+1609459200000
+```

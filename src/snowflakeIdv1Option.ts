@@ -16,7 +16,7 @@ export class snowflakeIdv1Option {
     workerIdBitLength?: number = 6
 
     /**
-     * 基础时间（ms 单位），不能超过当前系统时间
+     * 基础时间（ms 单位），不能超过当前系统时间， 默认2020年1月1日
      */
     baseTime?: number = 1577836800000
 
@@ -33,7 +33,7 @@ export class snowflakeIdv1Option {
     /**
      * 序列数位长，默认值 6，取值范围 [3, 21](要求：序列数位长+机器码位长不超过 22)
      */
-    seqBitLength?: number = 5
+    seqBitLength?: number = 6
 
     /**
      * 最大漂移次数（含），默认 2000，推荐范围 500-10000（与计算能力有关）

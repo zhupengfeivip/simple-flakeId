@@ -99,7 +99,7 @@ export class SnowflakeIdv1 {
         if (options.workerId === undefined)
             throw new Error("lost WorkerId")
 
-        // 1.BaseTime 2020年1月1日
+        // 1.BaseTime 2020年1月1日 Wed, 01 Jan 2020 00:00:00 GMT 0时区的2020年1月1日
         const BaseTime = 1577836800000
         if (!options.baseTime || options.baseTime < 0)
             options.baseTime = BaseTime
